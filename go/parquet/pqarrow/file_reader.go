@@ -616,6 +616,14 @@ func (c *columnIterator) NextChunk() (file.PageReader, error) {
 
 func (c *columnIterator) Descr() *schema.Column { return c.schema.Column(c.index) }
 
+func (c *columnIterator) TotalData() int64 {
+	total := int64(0)
+	for _, rg := range c.rowGroups {
+		total += c.rdr.RowGroup(rg).MetaData().TotalByteSize()
+	}
+	return total
+}
+
 // implementation of arrio.Reader for streaming record batches
 // from the parquet data.
 type recordReader struct {

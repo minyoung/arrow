@@ -57,7 +57,7 @@ func newLeafReader(rctx *readerCtx, field *arrow.Field, input *columnIterator, l
 		field:     field,
 		input:     input,
 		descr:     input.Descr(),
-		recordRdr: file.NewRecordReader(input.Descr(), leafInfo, field.Type, rctx.mem, bufferPool),
+		recordRdr: file.NewRecordReader(input.Descr(), leafInfo, rctx.mem, bufferPool, input.TotalData()),
 		props:     props,
 		refCount:  1,
 	}
