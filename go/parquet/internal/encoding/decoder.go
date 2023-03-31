@@ -145,8 +145,6 @@ func (d *dictDecoder) decodeSpaced(out interface{}, nullCount int, validBits []b
 	return d.idxDecoder.GetBatchWithDictSpaced(d.dictValueDecoder, out, nullCount, validBits, validBitsOffset)
 }
 
-var empty = [1]byte{0}
-
 // spacedExpand is used to take a slice of data and utilize the bitmap provided to fill in nulls into the
 // correct slots according to the bitmap in order to produce a fully expanded result slice with nulls
 // in the correct slots.
